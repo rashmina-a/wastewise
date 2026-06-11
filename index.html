@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WasteWise - Smart Waste Classification</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>WasteWise</h1>
+            <p class="subtitle">Smart Waste Classification</p>
+        </header>
+
+        <!-- Settings Panel -->
+        <section class="settings-panel" id="settingsPanel">
+            <button class="settings-toggle" id="settingsToggle">
+                <span class="icon">⚙</span>
+                <span>API Settings</span>
+            </button>
+            <div class="settings-content" id="settingsContent">
+                <div class="form-group">
+                    <label for="apiKey">NVIDIA NIM API Key</label>
+                    <input type="password" id="apiKey" placeholder="Enter your NVIDIA NIM API key">
+                </div>
+                <div class="form-group">
+                    <label for="modelSelect">Image Model</label>
+                    <input type="text" id="modelSelect" placeholder="e.g., nvidia/llava-1.6-34b" value="nvidia/llava-1.6-34b">
+                    <small style="display: block; margin-top: 5px; color: #666;">
+                        Click "Verify API" to see available models
+                    </small>
+                </div>
+                <button class="btn btn-primary" id="verifyApiBtn" type="button">Verify API Key</button>
+                <button class="btn btn-secondary" id="saveSettings">Save Settings</button>
+            </div>
+        </section>
+
+        <!-- Camera Section -->
+        <section class="camera-section">
+            <div class="camera-container" id="cameraContainer">
+                <video id="videoElement" autoplay playsinline></video>
+                <canvas id="captureCanvas" style="display: none;"></canvas>
+                <div class="camera-overlay" id="cameraOverlay">
+                    <p>Camera preview</p>
+                </div>
+            </div>
+            <div class="camera-controls">
+                <button class="btn btn-primary" id="startCamera">Start Camera</button>
+                <button class="btn btn-primary" id="captureBtn" disabled>Capture</button>
+                <button class="btn btn-secondary" id="uploadBtn">Upload Image</button>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection">
+            <div class="result-header">
+                <h2>Classification Result</h2>
+                <button class="btn btn-secondary" id="resetBtn">New Scan</button>
+            </div>
+            <div class="result-container">
+                <div class="result-image-wrapper">
+                    <canvas id="resultCanvas"></canvas>
+                    <div class="loading-overlay" id="loadingOverlay">
+                        <div class="spinner"></div>
+                        <p>Analyzing waste...</p>
+                    </div>
+                </div>
+                <div class="legend">
+                    <h3>Waste Categories</h3>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background: #3498db;"></span>
+                        <span>Recycling</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background: #2c3e50;"></span>
+                        <span>General Waste</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background: #27ae60;"></span>
+                        <span>Organic/Compost</span>
+                    </div>
+                </div>
+            </div>
+            <div class="summary" id="summary">
+                <h3>Summary</h3>
+                <div id="summaryContent"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2026 WasteWise - Harvard Research Project</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
