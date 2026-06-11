@@ -1,4 +1,4 @@
-# wastewise
+# Wastewise 🗑️
 Its a waste management software that recogonizes waste by scanning an image .
 
 So you can use this tool when you want to scan an image for three types of garbadge bins and find which garbadge bin to put this in .
